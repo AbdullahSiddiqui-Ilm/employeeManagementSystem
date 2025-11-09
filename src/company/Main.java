@@ -1,27 +1,42 @@
 package company;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Employee employee1 = new Employee("Abdullah", "Siddiqui",22, 19250, false, 2456 );
-        Employee employee2 = new Employee("AbdurRahman", "Ashfaq", 25, 17000, false, 5894 );
-        Employee employee3 = new Employee("AbdurRaazzaq", "Al-Badr", 23, 17500, false, 9754 );
-        Employee employee4 = new Employee("Arshad","Siddiqui", 69, 13057,false , 4790 );
-
+        Scanner scanner = new Scanner(System.in);
         Company c = new Company();
-        c.addEmployee(employee1);
-        c.addEmployee(employee2);
-        c.addEmployee(employee3);
-        c.addEmployee(employee4);
 
-        c.displayAllEmployees();
+        boolean running = true;
+        while (running) {
+            System.out.println("1. Add Employee");
+            System.out.println("2. Remove Employee");
+            System.out.println("3. Display all Employees");
+            System.out.println("4. Exit");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    c.addEmployee(scanner);
+                    break;
+                case 2:
+                    c.removeEmployee();
+                    break;
+                case 3:
+                    c.displayAllEmployees();
+                    break;
+                case 4:
+                    running = false;
+                    break;
+            }
+        }
 
 
 
-
-        double avg = EmployeeUtils.calculateAverageSalary(c.getEmployeeList());
-        System.out.println("\n" + avg);
-
+        scanner.close();
+        System.out.println("Program has ended");
     }
 }
